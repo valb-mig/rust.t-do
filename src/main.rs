@@ -1,31 +1,29 @@
+// Use Clap 'default' lib
+
+use clap::{Parser, Subcommand};
+
 use task::{StatusTask, Task};
 pub mod task;
 
-use clap::{Arg, Command, Parser};
-
+#[derive(Parser, Debug)]
+#[command(version, about = "Task manager", long_about = None)]
 struct Args {
-    command: Command,
+    #[clap(subcommand)]
+    pub command: Commands,
 }
 
-enum Comands {
-    Add,
+#[derive(Debug)]
+enum Commands {
+    Add(Task),
 }
 
 fn main() {
-    // [INFO] Option que vai vir do usuário
-    //
-    // tdo add -n "Lavar o carro" -d "Lavar o carro, pr muié n brigar"
-    // tdo add -n "Lavar o carro"
-
-    // let task = Task::new(
-    //     String::from("Lavar o carro"),
-    //     Some(String::from("Lavar o carro, pr muié n brigar")),
-    //     StatusTask::Pendente,
-    // );
-
-    // task.add();
-
-    // [FIX!]
 
     let args = Args::parse();
+
+    match args.command {
+        Commands::Add(add) => {
+            println!("add: {:?}", add);
+        }
+    }
 }

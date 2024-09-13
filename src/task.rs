@@ -1,8 +1,10 @@
+#[derive(Debug)]
 pub enum StatusTask {
     Pendente,
     Concluido,
 }
 
+#[derive(Debug)]
 pub struct Task {
     id: u32,
     name: String,
@@ -21,6 +23,7 @@ impl Task {
     }
 
     pub fn add(&self) {
+        // [INFO] Add task
         self.log();
     }
 
