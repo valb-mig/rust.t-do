@@ -1,6 +1,15 @@
-use clap::{Arg, Command};
 use task::{StatusTask, Task};
 pub mod task;
+
+use clap::{Arg, Command, Parser};
+
+struct Args {
+    command: Command,
+}
+
+enum Comands {
+    Add,
+}
 
 fn main() {
     // [INFO] Option que vai vir do usuário
@@ -16,10 +25,7 @@ fn main() {
 
     // task.add();
 
-    let matches = Command::new("tdo")
-        .version("0.1.0")
-        .author("Valb")
-        .about("Simple script to manage tasks")
-        .arg(Arg::new("add").short('a').long("add"))
-        .get_matches();
+    // [FIX!]
+
+    let args = Args::parse();
 }
