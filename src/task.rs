@@ -13,6 +13,7 @@ pub struct Task {
 }
 
 impl Task {
+
     pub fn new(name: String, description: Option<String>, status: StatusTask) -> Self {
         Self {
             id: 0,
@@ -25,6 +26,10 @@ impl Task {
     pub fn add(&self) {
         // [INFO] Add task
         self.log();
+    }
+
+    pub fn get_name(&self) -> String {
+        return self.name.clone();
     }
 
     fn log(&self) {

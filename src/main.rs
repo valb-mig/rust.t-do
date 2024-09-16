@@ -1,29 +1,52 @@
-// Use Clap 'default' lib
-
-use clap::{Parser, Subcommand};
-
+use clap::{Arg, ArgAction, Command};
 use task::{StatusTask, Task};
 pub mod task;
 
-#[derive(Parser, Debug)]
-#[command(version, about = "Task manager", long_about = None)]
-struct Args {
-    #[clap(subcommand)]
-    pub command: Commands,
-}
-
-#[derive(Debug)]
-enum Commands {
-    Add(Task),
-}
 
 fn main() {
 
-    let args = Args::parse();
+    let matches = Command::new("t-do")
+        .version("0.1.0")
+        .about("A simple task manager")
+        .subcommand_required(true)
+        .arg_required_else_help(true)
+        .subcommand(
+            Command::new("add")
+                .short_flag('a')
+                .long_flag("add")
+                .about("Add a task")
+                .arg(
+                    Arg::new("name")
+                        .short('n')
+                        .long("name")
+                )
+        )
+        .get_matches();
 
-    match args.command {
-        Commands::Add(add) => {
-            println!("add: {:?}", add);
+    match matches.subcommand() {
+
+        Some(( "add", add_match )) => {
+
+            if add_match.contains_id("name") {
+                
+                let task_name: Vec<_> = add_match
+                    .get_many::<String>("name")
+                    .expect("Task Name")
+                    .map(|s| s.as_str())
+                    .collect();
+
+                let values = task_name.join(", ");
+                
+                let task = Task::new(
+                    values,
+                    Some(String::from("Placeholder")),
+                    StatusTask::Pendente
+                );
+
+                println!("{}", task.get_name());
+            }
         }
+
+        _ => unreachable!(),
     }
 }

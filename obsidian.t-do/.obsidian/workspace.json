@@ -4,19 +4,19 @@
     "type": "split",
     "children": [
       {
-        "id": "e8c8f7f9d17f8b73",
+        "id": "f3cc8f6f88c3104f",
         "type": "tabs",
         "children": [
           {
-            "id": "afb63b10cdd54b13",
+            "id": "d516b90f3b90e724",
             "type": "leaf",
             "state": {
               "type": "canvas",
               "state": {
                 "file": "Diagram.canvas",
                 "viewState": {
-                  "x": -80,
-                  "y": -15,
+                  "x": 130,
+                  "y": 55,
                   "zoom": 0
                 }
               }
@@ -149,9 +149,9 @@
       "command-palette:Open command palette": false
     }
   },
-  "active": "afb63b10cdd54b13",
+  "active": "d516b90f3b90e724",
   "lastOpenFiles": [
-    "How?.md",
-    "Diagram.canvas"
+    "Diagram.canvas",
+    "How?.md"
   ]
 }
